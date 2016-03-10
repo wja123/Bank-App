@@ -23,20 +23,20 @@
         <h3>Transaction Tracker</h3>
       </div>
       <div class="header-2">
-        <h2>{{bank-balance | currency}}</h2>
+        <h2 class ="bankbalance" ng-model = "bankbalance">{{bankbalance | currency}}</h2>
       </div>
 
     </div>
     <div class="row">
-      <div class="col-md-3 input-col">
+      <div class="col-md-2 input-col">
         Input Description
         <input type="text" ng-model="transaction.description">
       </div>
-      <div class="col-md-3">
+      <div class="col-md-2">
         Input Amount
         <input type="text" ng-model="transaction.amount">
       </div>
-      <div class="col-md-3">
+      <div class="col-md-2">
         Input Date
         <input type="date" ng-model="transaction.date">
       </div> 
@@ -48,89 +48,89 @@
      </div>
    </div>
 
-<div class="row">
-   <div class="col-md-12" class ="input-col">
-    <table class ="table table-hover">
-      <thead>
-        <tr>
-          <td>
-            Date
-          </td>
-          <td>
-            Description
-          </td>
-          <td>
-            Credit
-          </td>
-          <td>
-            Debit
-          </td>
-          <td>
-            Delete
-          </td>
-          <td>
-            Edit
-          </td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="trans in transList track by $index">
-          <td>
-            {{trans.date}}
-          </td>
-          <td>
-            {{trans.description}}
-          </td>
-          <td>
-            {{trans.debit}}
-          </td>
-          <td>
-            {{trans.credit}}
-          </td>
-          <td>
-            <span class="glyphicon glyphicon-remove" ng-click="clickRemove()"></span>
-          </td>
-          <td>
-            <span class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#myModal" ng-click="clickEdit()"></span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">Edit Transaction</h4>
-          </div>
-          <div class="modal-body">
-            <h5>
+   <div class="row">
+     <div class="col-md-12" class ="input-col">
+      <table class ="table table-hover">
+        <thead>
+          <tr>
+            <td>
               Date
-            </h5>
-            <input class ="upDate" type="text" ng-model="updatetrans.date">
-            <h5>
+            </td>
+            <td>
               Description
-            </h5>
-            <input class ="upDesc" type="text" ng-model="updatetrans.desc">
-            <h5>
-              Debit Amount
-            </h5>
-            <input class ="upDebit" type="text" ng-model="updatetrans.debit">
-            <h5>
-              Credit Amount
-            </h5>
-            <input class ="upDebit" type="text" ng-model="updatetrans.credit">
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary"  data-dismiss="modal" ng-click="clickUpdate()">Save changes</button>
+            </td>
+            <td>
+              Credit
+            </td>
+            <td>
+              Debit
+            </td>
+            <td>
+              Delete
+            </td>
+            <td>
+              Edit
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="trans in transList track by $index">
+            <td>
+              {{trans.date | date : short}}
+            </td>
+            <td>
+              {{trans.description}}
+            </td>
+            <td>
+              {{trans.debit}}
+            </td>
+            <td>
+              {{trans.credit}}
+            </td>
+            <td>
+              <span class="glyphicon glyphicon-remove" ng-click="clickRemove()"></span>
+            </td>
+            <td>
+              <span class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#myModal" ng-click="clickEdit()"></span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Edit Transaction</h4>
+            </div>
+            <div class="modal-body">
+              <h5>
+                Date
+              </h5>
+              <input class ="upDate" type="text" ng-model="updatetrans.date">
+              <h5>
+                Description
+              </h5>
+              <input class ="upDesc" type="text" ng-model="updatetrans.description">
+              <h5>
+                Debit Amount
+              </h5>
+              <input class ="upDebit" type="text" ng-model="updatetrans.debit">
+              <h5>
+                Credit Amount
+              </h5>
+              <input class ="upCredit" type="text" ng-model="updatetrans.credit">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary"  data-dismiss="modal" ng-click="clickUpdate()">Save changes</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </div>
 </body>
 </html>
