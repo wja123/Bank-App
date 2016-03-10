@@ -1,5 +1,5 @@
 'use strict';
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 var http = require("http");
 var path = require("path");
 var morgan = require("morgan");

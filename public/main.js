@@ -1,14 +1,14 @@
 'use strict';
 
-var app = angular.module("transApp",[]);
+var app = angular.module("transApp", []);
 var editIndex;
 
-app.controller("main-controller",function($scope,$http){
-console.log($scope);
+app.controller("main-controller", function($scope, $http) {
+    console.log($scope);
 
-getData();
+    getData();
 
-function getData(){
+    function getData() {
         $http({
             method: "GET",
             url: "http://localhost:8000/transactions"
@@ -19,55 +19,45 @@ function getData(){
         }, function(err) {
             console.log(err);
         });
-}
+    }
 
 
+    $scope.clickRemove = function() {
+        var delIndex = this.trans.id;
+        console.log(this.trans.id)
+        $http({
+            method: "DELETE",
+            url: "http://localhost:8000/transactions/" + delIndex
+        }).then(function(res) {
+            $scope.transList.splice(this.$index, 1);
+        }, function(err) {
+            console.log(err);
+        })
+    };
 
-// function updateData(){
-//   $http({
-// method:"PUT",
-// url:url: "http://localhost:8000/transactions/"+editIndex,
-// // data:
-//   });
-// }
+    $scope.clickEdit = function() {
+        var delIndex = this.trans.id;
+        //$(".upDate").val(this.trans.date);
 
-$scope.clickRemove = function(){
-  var delIndex = this.trans.id;
-  console.log(this.trans.id)
-    $http({
-method:"DELETE",
-url: "http://localhost:8000/transactions/"+delIndex
-  }).then(function(res){
-    $scope.transList.splice(this.$index,1);
-  },function(err){
-    console.log(err);
-  })
-};
 
-$scope.updateData = function(data){
-  var delIndex = this.trans.id;
-  console.log(this.trans.id)
-    $http({
-method:"PUT",
-url: "http://localhost:8000/transactions/"+delIndex
-  }).then(function(res){
-    $scope.transList.splice(this.$index,1);
-  },function(err){
-    console.log(err);
-  })
-}
+        // $scope.updatetrans.date = this.trans.date
+        //$(".upDesc").val(this.trans.description);  
+        console.log(this.trans.id)
 
-function updateData(index,data){
-    var delIndex = this.trans.id;
-  console.log(this.trans.id)
-    $http({
-method:"PUT",
-url: "http://localhost:8000/transactions/"+delIndex
-  }).then(function(res){
-    $scope.transList.splice(this.$index,1);
-  },function(err){
-    console.log(err);
-  })
-}
+    }
+
+    function updateDataServer(index, data) {
+        var delIndex = this.trans.id;
+        console.log(this.trans.id)
+        $http({
+            method: "PUT",
+            url: "http://localhost:8000/transactions/" + delIndex,
+            data: data
+        }).then(function(res) {
+            $scope.transList.splice(this.$index, 1);
+        }, function(err) {
+            console.log(err);
+        })
+    }
 
 });
